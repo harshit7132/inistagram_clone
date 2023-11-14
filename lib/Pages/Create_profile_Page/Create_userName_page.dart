@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:inistagram_clone/Pages/Create_profile_Page/Create_Password_Page.dart';
 
-import '../../Custom_widgets/Text_field.dart';
+import '../../Custom_widgets/UiHelper.dart';
 
 class User_name_page extends StatefulWidget {
   const User_name_page({super.key});
@@ -43,7 +43,8 @@ class _User_name_pageState extends State<User_name_page> {
                     fontSize: 25.sp,
                     color: Colors.white)),
             SizedBox(height: 25.h),
-            Custom.textField(userNameController, 'User name', 'UserNamePage'),
+            Custom.textField(
+                userNameController, 'User name', 'UserNamePage', (value) {}),
             SizedBox(height: 25.h),
             Custom.elevatedButton(() {
               Navigator.push(context,

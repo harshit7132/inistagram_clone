@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../Custom_widgets/Text_field.dart';
+import '../Custom_widgets/UiHelper.dart';
 
 class Forgot_Page extends StatefulWidget {
   const Forgot_Page({super.key});
@@ -64,7 +64,7 @@ class _Forgot_PageState extends State<Forgot_Page> {
                     ))),
             SizedBox(height: 25.h),
             Custom.textField(emailController, 'Username, email or mobile',
-                'Forgot_password'),
+                'Forgot_password', (value) {}),
             SizedBox(height: 25.h),
             Custom.elevatedButton(() {}, 'Find Account'),
             SizedBox(height: 25.h),

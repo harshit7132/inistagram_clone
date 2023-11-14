@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../Custom_widgets/Text_field.dart';
+import '../../Custom_widgets/UiHelper.dart';
 
 class Birthday_page extends StatefulWidget {
   const Birthday_page({super.key});
@@ -14,6 +15,8 @@ class _Birthday_pageState extends State<Birthday_page> {
   @override
   Widget build(BuildContext context) {
     TextEditingController dateController = TextEditingController();
+    DateTime date = DateTime(2023, 11, 10);
+
     return Scaffold(
         body: SafeArea(
             child: Container(
@@ -36,7 +39,7 @@ class _Birthday_pageState extends State<Birthday_page> {
                   size: 35.sp,
                 )),
             SizedBox(height: 25.h),
-            Text('Create a password',
+            Text('What`s your date of birth?',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25.sp,
@@ -61,12 +64,63 @@ class _Birthday_pageState extends State<Birthday_page> {
                       color: Colors.blue))
             ])),
             SizedBox(height: 25.h),
-            Custom.textField(dateController, 'Date of birth', 'UserNamePage'),
+            InkWell(
+              onTap: () {
+                _showDialog(
+                  CupertinoDatePicker(
+                    initialDateTime: date,
+                    mode: CupertinoDatePickerMode.date,
+                    use24hFormat: true,
+                    showDayOfWeek: true,
+                    onDateTimeChanged: (DateTime newDate) {
+                      setState(() => date = newDate);
+                    },
+                  ),
+                );
+              },
+              child: Custom.textField(
+                  dateController,
+                  dateController == null
+                      ? 'Date of birth'
+                      : '${date.month}-${date.day}-${date.year}',
+                  'UserNamePage',
+                  (value) {}),
+            ),
             SizedBox(height: 25.h),
-            Custom.elevatedButton(() {}, 'Next')
+            Custom.elevatedButton(() {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: DatePickerDialog(
+                        lastDate: DateTime(2030),
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2022, 12),
+                      ),
+                    );
+                  });
+            }, 'Next')
           ],
         ),
       ),
     )));
+  }
+
+  void _showDialog(Widget child) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 216,
+        padding: const EdgeInsets.only(top: 6.0),
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
+    );
   }
 }

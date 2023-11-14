@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:inistagram_clone/Custom_widgets/Text_field.dart';
+import 'package:inistagram_clone/Bloc/login_Bloc/log_in_bloc.dart';
+import 'package:inistagram_clone/Custom_widgets/UiHelper.dart';
 
 import 'Create_profile_Page/UserName_page.dart';
 import 'Forgot_Page.dart';
@@ -38,7 +40,7 @@ class _Login_PageState extends State<Login_Page> {
                 'English (IN)',
                 style: TextStyle(color: Colors.white70),
               ),
-              Container(
+              SizedBox(
                 height: 70.h,
                 width: 70.w,
                 child: Image.asset(
@@ -49,10 +51,14 @@ class _Login_PageState extends State<Login_Page> {
               Column(
                 children: [
                   Custom.textField(Emailcontroller, 'Username, email or mobile',
-                      'Login_page'),
+                      'Login_page', (value) {
+                    context.read<LogInBloc>().add(EmailEvent(value));
+                  }),
                   SizedBox(height: 15.h),
-                  Custom.textField(
-                      Passwordcontroller, 'Password', 'Login_page'),
+                  Custom.textField(Passwordcontroller, 'Password', 'Login_page',
+                      (value) {
+                    context.read<LogInBloc>().add(PasswordEvent(value));
+                  }),
                   SizedBox(height: 15.h),
                   Custom.elevatedButton(() {}, 'Log In'),
                   TextButton(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inistagram_clone/Pages/Create_profile_Page/birthday_page.dart';
 
-import '../../Custom_widgets/Text_field.dart';
+import '../../Custom_widgets/UiHelper.dart';
 
 class Create_pass_Page extends StatefulWidget {
   const Create_pass_Page({super.key});
@@ -50,9 +51,13 @@ class _Create_pass_PageState extends State<Create_pass_Page> {
                     fontSize: 15.sp,
                     color: Colors.white)),
             SizedBox(height: 25.h),
-            Custom.textField(passwordController, 'Password', 'UserNamePage'),
+            Custom.textField(
+                passwordController, 'Password', 'UserNamePage', (value) {}),
             SizedBox(height: 25.h),
-            Custom.elevatedButton(() {}, 'Next')
+            Custom.elevatedButton(() {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Birthday_page()));
+            }, 'Next')
           ],
         ),
       ),

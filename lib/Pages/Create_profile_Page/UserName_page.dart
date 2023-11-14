@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../Custom_widgets/Text_field.dart';
+import '../../Custom_widgets/UiHelper.dart';
 import 'Create_userName_page.dart';
 
 class Full_name_page extends StatefulWidget {
@@ -43,7 +43,8 @@ class _Full_name_pageState extends State<Full_name_page> {
                     fontSize: 25.sp,
                     color: Colors.white)),
             SizedBox(height: 25.h),
-            Custom.textField(userNameController, 'Full name', 'UserNamePage'),
+            Custom.textField(
+                userNameController, 'Full name', 'UserNamePage', (value) {}),
             SizedBox(height: 25.h),
             Custom.elevatedButton(() {
               Navigator.push(context,
