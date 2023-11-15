@@ -23,29 +23,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => LogInBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SignInBloc(),
-        ),
-        BlocProvider(
-          create: (context) => BottomNavBloc(),
-        ),
-      ],
-      child: ScreenUtilInit(
-        builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            home: child,
-          );
-        },
-        child: FirebaseAuth.instance.currentUser != null
-            ? const Home_Screen()
-            : SignInWithPhoneScreen(),
-      ),
-    );
+        providers: [
+          BlocProvider(
+            create: (context) => LogInBloc(),
+          ),
+          BlocProvider(
+            create: (context) => SignInBloc(),
+          ),
+          BlocProvider(
+            create: (context) => BottomNavBloc(),
+          ),
+        ],
+        child: ScreenUtilInit(
+          builder: (context, child) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              home: child,
+            );
+          },
+          child: FirebaseAuth.instance.currentUser != null
+              ? const Home_Screen()
+              : SignInWithPhoneScreen(),
+        ));
   }
 }

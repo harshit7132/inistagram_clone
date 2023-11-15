@@ -65,17 +65,16 @@ class _Home_ScreenState extends State<Home_Screen> {
             backgroundColor: Colors.blue,
             body: Center(child: bottomNavScreen[state.tabIndex]),
             bottomNavigationBar: BottomNavigationBar(
-              items: bottomNavIcons,
-              currentIndex:
-                  BlocProvider.of<BottomNavBloc>(context).state.tabIndex,
-              onTap: (index) {
-                setState(() {
-                  BlocProvider.of<BottomNavBloc>(context)
-                      .add(Tabchange(tabIndex: index));
-                });
-              },
-              selectedItemColor: Colors.white,
-            ));
+                items: bottomNavIcons,
+                currentIndex:
+                    BlocProvider.of<BottomNavBloc>(context).state.tabIndex,
+                onTap: (index) {
+                  setState(() {
+                    BlocProvider.of<BottomNavBloc>(context)
+                        .add(Tabchange(tabIndex: index));
+                  });
+                },
+                selectedItemColor: Colors.white));
       },
     );
   }
