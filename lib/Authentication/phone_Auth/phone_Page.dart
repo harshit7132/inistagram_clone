@@ -70,8 +70,11 @@ class SignInWithPhoneScreen extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              Custom.TextFieldWidget("Enter your number",
-                  FontAwesomeIcons.mobile, phoneController),
+              Custom.TextFieldWidget(
+                  "Enter your number",
+                  FontAwesomeIcons.mobile,
+                  phoneController,
+                  TextInputType.number),
               SizedBox(
                 height: 40.h,
               ),

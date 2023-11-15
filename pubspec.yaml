@@ -47,6 +47,9 @@ dependencies:
   google_fonts: any
   google_sign_in: any
   pinput: any
+  firebase_messaging: any
+  flutter_local_notifications: any
+ # app_settings: any
 
 dev_dependencies:
   flutter_test:

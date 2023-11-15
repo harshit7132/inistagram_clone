@@ -3,10 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inistagram_clone/Authentication/phone_Auth/phone_Page.dart';
 import 'package:inistagram_clone/Pages/Home_Page.dart';
 import 'package:inistagram_clone/firebase_options.dart';
 
-import 'Authentication/phone_Auth/otp_Page.dart';
 import 'Bloc/SignIN_bloc/sign_in_bloc.dart';
 import 'Bloc/bottom_Nav_Bloc/bottom_nav_bloc.dart';
 import 'Bloc/login_Bloc/log_in_bloc.dart';
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         },
         child: FirebaseAuth.instance.currentUser != null
             ? const Home_Screen()
-            : VerifyOtpScreen(verificationId: '', phoneNumber: 123),
+            : SignInWithPhoneScreen(),
       ),
     );
   }

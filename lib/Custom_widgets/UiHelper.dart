@@ -65,14 +65,18 @@ class Custom {
     );
   }
 
-  static TextFieldWidget(final String hintText, final IconData iconData,
-      final TextEditingController controller) {
+  static TextFieldWidget(
+      final String hintText,
+      final IconData iconData,
+      final TextEditingController controller,
+      final TextInputType? keyBoardtype) {
     return Card(
       color: Colors.grey.shade200,
       elevation: 7,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 3.0),
         child: TextField(
+          keyboardType: keyBoardtype,
           controller: controller,
           style: GoogleFonts.abhayaLibre(
               color: Colors.grey.shade600, fontSize: 18.sp),

@@ -12,6 +12,19 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
+  //Notification_Sevices notification_sevices = Notification_Sevices();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   notification_sevices.requestNotificationPermission();
+  //   notification_sevices.firebaseInit();
+  //   //notification_sevices.isokenRefresh();
+  //   notification_sevices.getDeviceToken().then((value) {
+  //     print(value);
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     List<BottomNavigationBarItem> bottomNavIcons = <BottomNavigationBarItem>[

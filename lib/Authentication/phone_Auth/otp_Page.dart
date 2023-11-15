@@ -95,6 +95,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               height: 10.h,
             ),
             Pinput(
+              keyboardType: TextInputType.number,
               controller: otpController,
               focusNode: focusNode,
               length: 6,
