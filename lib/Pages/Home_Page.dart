@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:inistagram_clone/Pages/Home_Screen.dart';
 import 'package:inistagram_clone/Pages/Login_Page.dart';
 
 import '../Bloc/bottom_Nav_Bloc/bottom_nav_bloc.dart';
@@ -12,18 +13,19 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
+  // InApp_notification inApp_notification = InApp_notification();
   //Notification_Sevices notification_sevices = Notification_Sevices();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   notification_sevices.requestNotificationPermission();
-  //   notification_sevices.firebaseInit();
-  //   //notification_sevices.isokenRefresh();
-  //   notification_sevices.getDeviceToken().then((value) {
-  //     print(value);
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    // inApp_notification.sendNotify();
+    //notification_sevices.firebaseInit();
+    //notification_sevices.isokenRefresh();
+    // notification_sevices.getDeviceToken().then((value) {
+    //   print(value);
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _Home_ScreenState extends State<Home_Screen> {
 
     List<Widget> bottomNavScreen = <Widget>[
       Login_Page(),
-      Login_Page(),
+      Home_Page(),
       Login_Page(),
       Login_Page(),
     ];
