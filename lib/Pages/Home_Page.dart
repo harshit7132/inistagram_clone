@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:inistagram_clone/Pages/Home_Screen.dart';
-import 'package:inistagram_clone/Pages/Login_Page.dart';
+import 'package:inistagram_clone/Pages/Bottom_Nav_Pages/Profile_Page.dart';
+import 'package:inistagram_clone/Pages/Bottom_Nav_Pages/Reels_Page.dart';
+import 'package:inistagram_clone/Pages/Bottom_Nav_Pages/Search_Page.dart';
+import 'package:inistagram_clone/Pages/Bottom_Nav_Pages/Upload_Page.dart';
+import 'package:inistagram_clone/Pages/Chat_pages/homescreen.dart';
 
 import '../Bloc/bottom_Nav_Bloc/bottom_nav_bloc.dart';
 
@@ -13,58 +17,54 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
-  // InApp_notification inApp_notification = InApp_notification();
-  //Notification_Sevices notification_sevices = Notification_Sevices();
-
-  @override
-  void initState() {
-    super.initState();
-    // inApp_notification.sendNotify();
-    //notification_sevices.firebaseInit();
-    //notification_sevices.isokenRefresh();
-    // notification_sevices.getDeviceToken().then((value) {
-    //   print(value);
-    // });
-  }
-
   @override
   Widget build(BuildContext context) {
     List<BottomNavigationBarItem> bottomNavIcons = <BottomNavigationBarItem>[
-      const BottomNavigationBarItem(
+      BottomNavigationBarItem(
           backgroundColor: Colors.black,
-          label: 'Calender',
+          label: '',
           icon: Icon(
-            FontAwesomeIcons.calendar,
+            FontAwesomeIcons.home,
+            size: 20.sp,
           )),
-      const BottomNavigationBarItem(
+      BottomNavigationBarItem(
           backgroundColor: Colors.black,
-          label: 'Check',
+          label: '',
           icon: Icon(
-            FontAwesomeIcons.check,
+            FontAwesomeIcons.search,
+            size: 20.sp,
           )),
-      const BottomNavigationBarItem(
+      BottomNavigationBarItem(
           backgroundColor: Colors.black,
-          label: 'Map',
+          label: '',
           icon: Icon(
-            FontAwesomeIcons.map,
+            FontAwesomeIcons.add,
+            size: 20.sp,
           )),
-      const BottomNavigationBarItem(
+      BottomNavigationBarItem(
           backgroundColor: Colors.black,
-          label: 'User',
-          icon: Icon(FontAwesomeIcons.user))
+          label: '',
+          icon: Icon(
+            FontAwesomeIcons.video,
+            size: 20.sp,
+          )),
+      BottomNavigationBarItem(
+          backgroundColor: Colors.black,
+          label: '',
+          icon: Icon(FontAwesomeIcons.user, size: 20.sp))
     ];
 
     List<Widget> bottomNavScreen = <Widget>[
-      Login_Page(),
-      Home_Page(),
-      Login_Page(),
-      Login_Page(),
+      HomeScreen(),
+      Search_Page(),
+      Upload_Page(),
+      Reels_Page(),
+      Profile_Page(),
     ];
 
     return BlocBuilder<BottomNavBloc, BottomNavState>(
       builder: (context, state) {
         return Scaffold(
-            backgroundColor: Colors.blue,
             body: Center(child: bottomNavScreen[state.tabIndex]),
             bottomNavigationBar: BottomNavigationBar(
                 items: bottomNavIcons,

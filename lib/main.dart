@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:inistagram_clone/Authentication/phone_Auth/phone_Page.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:inistagram_clone/Pages/Home_Page.dart';
+import 'package:inistagram_clone/Pages/IntroScreen_Page/introScreen_Page.dart';
 import 'package:inistagram_clone/firebase_options.dart';
 
 import 'Bloc/SignIN_bloc/sign_in_bloc.dart';
@@ -17,11 +17,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseApi().initNotification();
+  MobileAds.instance.initialize();
   runApp(const MyApp());
-}
-
-Future<void> _firebaseMessagingBackground(RemoteMessage message) async {
-  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -45,13 +42,13 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
+              title: 'Instagram Clone',
               home: child,
             );
           },
           child: FirebaseAuth.instance.currentUser != null
-              ? const Home_Screen()
-              : SignInWithPhoneScreen(),
+              ? Home_Screen()
+              : Intro_Screen(),
         ));
   }
 }

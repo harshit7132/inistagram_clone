@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:inistagram_clone/Custom_widgets/UiHelper.dart';
+import 'package:inistagram_clone/Custom_widgets/uihelper.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../Pages/Home_Page.dart';

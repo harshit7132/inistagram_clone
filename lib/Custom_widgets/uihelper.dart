@@ -16,7 +16,7 @@ class Custom {
       width: 320.w,
       decoration: BoxDecoration(
           color: text == "UserNamePage" ? Colors.white38 : Colors.black12,
-          borderRadius: BorderRadius.circular(20)),
+          borderRadius: BorderRadius.circular(10.w)),
       child: Padding(
         padding: EdgeInsets.only(top: 8.h, left: 20.w),
         child: TextField(
@@ -33,11 +33,12 @@ class Custom {
 
   static elevatedButton(VoidCallback function, String text) {
     return Container(
-      height: 40.h,
+      height: 45.h,
       width: 320.w,
       child: ElevatedButton(
           onPressed: function,
-          child: Text(text, style: TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(text,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp)),
           style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))))),

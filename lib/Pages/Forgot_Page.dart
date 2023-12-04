@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../Custom_widgets/UiHelper.dart';
+import 'package:inistagram_clone/Custom_widgets/uihelper.dart';
 
 class Forgot_Page extends StatefulWidget {
   const Forgot_Page({super.key});

@@ -45,10 +45,18 @@ dependencies:
   bloc: any
   font_awesome_flutter: any
   google_fonts: any
+  introduction_slider: ^2.0.1
+  google_mobile_ads: any
+  uuid: any
   google_sign_in: any
   pinput: any
   firebase_messaging: any
   flutter_local_notifications: any
+  bubble: any
+  shimmer: ^3.0.0
+  image_picker: any
+
+
  # app_settings: any
 
 dev_dependencies:

@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inistagram_clone/Custom_widgets/UiHelper.dart';
+import 'package:inistagram_clone/Custom_widgets/uihelper.dart';
 import 'package:inistagram_clone/Pages/Home_Page.dart';
 
 import '../../Models/userModel.dart';
@@ -18,9 +18,7 @@ class SignUpController {
   signUp() async {
     final state = context.read<SignInBloc>().state;
     String email = state.email.trim();
-    String userName = state.username.trim();
     String password = state.password.trim();
-    String phone = state.phone.trim();
     if (email == " " && password == " ") {
       Custom.CustomSnackBar("Enter Required Fields", context);
     } else {
@@ -35,14 +33,16 @@ class SignUpController {
         String uid = usercredential.user!.uid;
 
         FirebaseFirestore.instance
-            .collection("Users-New")
+            .collection("Users")
             .doc(email)
             .set(UserModel(
-              username: userName,
+              username: '',
               email: email,
               password: password,
-              mobile: phone,
+              mobile: '',
               id: uid,
+              fullName: '',
+              dob: '',
             ).toMap())
             .then((value) {
           log("User Created!!");

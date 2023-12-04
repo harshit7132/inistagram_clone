@@ -4,30 +4,35 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:inistagram_clone/Authentication/phone_Auth/phone_Page.dart';
 import 'package:inistagram_clone/Bloc/SignIN_bloc/sign_in_bloc.dart';
+import 'package:inistagram_clone/Bloc/bloc_Controllers/signIn_Controller.dart';
 import 'package:inistagram_clone/Custom_widgets/uihelper.dart';
-import 'package:inistagram_clone/Pages/Create_profile_Page/birthday_page.dart';
 
 import '../../Models/userModel.dart';
 
-class Create_pass_Page extends StatefulWidget {
+class SignUp_page extends StatefulWidget {
   String uid;
   String userName;
   String fullName;
-  Create_pass_Page(
+  String DOB;
+  String password;
+  SignUp_page(
       {super.key,
       required this.fullName,
       required this.userName,
-      required this.uid});
+      required this.uid,
+      required this.DOB,
+      required this.password});
 
   @override
-  State<Create_pass_Page> createState() => _Create_pass_PageState();
+  State<SignUp_page> createState() => _SignUp_pageState();
 }
 
-class _Create_pass_PageState extends State<Create_pass_Page> {
+class _SignUp_pageState extends State<SignUp_page> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController passwordController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
 
     return Scaffold(
         body: SafeArea(
@@ -51,30 +56,33 @@ class _Create_pass_PageState extends State<Create_pass_Page> {
                   size: 35.sp,
                 )),
             SizedBox(height: 25.h),
-            Text('Create a password',
+            Text('What`s your email address?',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 25.sp,
+                    fontSize: 27.sp,
                     color: Colors.white)),
-            SizedBox(height: 25.h),
+            SizedBox(height: 18.h),
             Text(
-                'Create a password with at least 6 letters or numbers. It should be something that others can`t guess.',
+                'Enter the email address at which you can be contacted. No one will see this on your profile',
                 style: TextStyle(
-                    height: 1.6,
                     fontWeight: FontWeight.bold,
                     fontSize: 15.sp,
                     color: Colors.white)),
             SizedBox(height: 25.h),
-            Custom.textField(passwordController, 'Password', 'UserNamePage',
+            Custom.textField(emailController, 'Email address', 'UserNamePage',
                 (value) {
+              context.read<SignInBloc>().add(EmailEvent(value));
+            }),
+            SizedBox(height: 25.h),
+            Custom.elevatedButton(() {
               FirebaseFirestore.instance
                   .collection("Users")
                   .doc(widget.uid)
                   .set(UserModel(
+                    dob: widget.DOB,
                     username: widget.userName,
-                    email: '',
-                    dob: '',
-                    password: passwordController.text.trim(),
+                    email: emailController.text.trim(),
+                    password: widget.password,
                     mobile: '',
                     id: widget.uid,
                     fullName: widget.fullName,
@@ -83,20 +91,27 @@ class _Create_pass_PageState extends State<Create_pass_Page> {
                 log("User Created!!");
                 Custom.CustomSnackBar("Welcome ${widget.fullName}", context);
               });
-              context.read<SignInBloc>().add(passwordEvent(value));
-            }),
-            SizedBox(height: 25.h),
-            Custom.elevatedButton(() {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Birthday_page(
-                            uid: widget.uid,
-                            fullName: widget.fullName,
-                            userName: widget.userName,
-                            passWord: passwordController.text.trim(),
-                          )));
+              SignUpController(context: context).signUp();
             }, 'Next'),
+            SizedBox(height: 25.h),
+            Container(
+              height: 40.h,
+              width: 300.w,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(20)),
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SignInWithPhoneScreen()));
+                },
+                child: Text('Sign up with Mobile Number',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white)),
+              ),
+            )
           ],
         ),
       ),

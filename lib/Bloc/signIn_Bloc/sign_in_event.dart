@@ -13,6 +13,11 @@ class userNameEvent extends SignInEvent {
   userNameEvent(this.username);
 }
 
+class fullEvent extends SignInEvent {
+  final String fullname;
+  fullEvent(this.fullname);
+}
+
 class passwordEvent extends SignInEvent {
   final String password;
   passwordEvent(this.password);
